@@ -45,7 +45,7 @@ def get_stats():
             "boot_date": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(psutil.boot_time()))
         },
         "cpu": {
-            "usage_percent": psutil.cpu_percent(interval=1),
+            "usage_percent": f"{psutil.cpu_percent(interval=1):.1f}",
             "usage_per_cpu": psutil.cpu_percent(interval=None, percpu=True),
             "cores_physical": psutil.cpu_count(logical=False),
             "cores_logical": psutil.cpu_count(logical=True),
@@ -56,7 +56,7 @@ def get_stats():
             "total": get_size(psutil.virtual_memory().total),
             "available": get_size(psutil.virtual_memory().available),
             "used": get_size(psutil.virtual_memory().used),
-            "percent": psutil.virtual_memory().percent
+            "percent": f"{psutil.virtual_memory().percent:.1f}"
         },
         "disk": {
             "total": get_size(psutil.disk_usage('/').total),
